@@ -45,7 +45,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public void write(Configs c, Object o) {
 		try {
-			c.write(false, o);
+			c.write(o);
 		} catch (NullPointerException | IOException e) {
 			e.printStackTrace();
 		}
