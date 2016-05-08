@@ -36,7 +36,7 @@ public class Configs {
 	}
 	
 	/**
-	 * Crie o arquivo.
+	 * Cria o arquivo.
 	 * 
 	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
 	 * @param copyDefaults Coloque "true" se o arquivo for YML e você queria copiar o padrão que está no projeto.
@@ -68,20 +68,38 @@ public class Configs {
 		return false;
 	}
 	
+	/**
+	 * Retorna o file.
+	 */
 	public File getFile() throws NullPointerException{
 		return f;
 	}
 	
+	/**
+	 * Retorna o FileConfiguration.
+	 */
 	public FileConfiguration getFileConfiguration() throws NullPointerException {
 		return fc;
 	}
 	
+	/**
+	 * Salva a config.
+	 * Somente para arquivos .yml!
+	 */
 	public boolean save() throws IOException, NullPointerException {
 		if (pl != null && fc != null) fc.save(f);
 		if (pl == null || fc == null || f == null) return false;
 		return true;
 	}
 	
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
+	 * @param key Caso seja YML, coloque o caminho, exemplo: "Custom.Custom"; 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
 	public boolean write(boolean isYML, String key, String... values) throws NullPointerException, IOException {
 		if (isYML && pl != null && fc != null && f != null) {
 			fc.set(key, values);
@@ -97,22 +115,54 @@ public class Configs {
 		return false;
 	}
 	
-	public boolean write(boolean isYML, String... values) throws NullPointerException, IOException {
-		return write(isYML, "", values);
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
+	public boolean write(String... values) throws NullPointerException, IOException {
+		return write(false , "", values);
 	}
 	
-	public boolean write(boolean isYML, String values) throws NullPointerException, IOException {
-		return write(isYML, "", values);
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
+	public boolean write(String values) throws NullPointerException, IOException {
+		return write(false , "", values);
 	}
 	
-	public boolean write(boolean isYML, Object... values) throws NullPointerException, IOException {
-		return write(isYML, "", values);
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
+	public boolean write(Object... values) throws NullPointerException, IOException {
+		return write(false, "", values);
 	}
 	
-	public boolean write(boolean isYML, Object values) throws NullPointerException, IOException {
-		return write(isYML, "", values);
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
+	public boolean write(Object values) throws NullPointerException, IOException {
+		return write(false, "", values);
 	}
 	
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
+	 * @param key Caso seja YML, coloque o caminho, exemplo: "Custom.Custom"; 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
 	public boolean write(boolean isYML, String key, Object values) throws NullPointerException, IOException {
 		if (isYML && pl != null && fc != null && f != null) {
 			fc.set(key, values);
@@ -128,6 +178,14 @@ public class Configs {
 		return false;
 	}
 	
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
+	 * @param key Caso seja YML, coloque o caminho, exemplo: "Custom.Custom"; 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
 	public boolean write(boolean isYML, String key, Object... values) throws NullPointerException, IOException {
 		if (isYML && pl != null && fc != null && f != null) {
 			fc.set(key, values);
@@ -143,6 +201,14 @@ public class Configs {
 		return false;
 	}
 	
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
+	 * @param key Caso seja YML, coloque o caminho, exemplo: "Custom.Custom"; 
+	 * @param values O que você deseja setar. 
+	 * 
+	 */
 	public boolean write(boolean isYML, String key, String values) throws NullPointerException, IOException {
 		if (isYML && pl != null && fc != null && f != null) {
 			fc.set(key, values);
@@ -159,31 +225,58 @@ public class Configs {
 	}
 	
 	
-	public boolean write(boolean isYML, List<String> list) throws NullPointerException, IOException {
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param list O que você deseja setar. 
+	 * 
+	 */
+	public boolean write(List<String> list) throws NullPointerException, IOException {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) sb.append(list.get(i) + "@%adsw%@");
-		return write(isYML, "", sb.toString().split("@%adsw%@"));
+		return write(false, "", sb.toString().split("@%adsw%@"));
 	}
 	
+	
+	/**
+	 * Escreva algo no arquivo.
+	 * 
+	 * @param isYML Coloque "true" se o arquivo for YML, se não, coloque "false";
+	 * @param key Caso seja YML, coloque o caminho, exemplo: "Custom.Custom"; 
+	 * @param list O que você deseja setar. 
+	 * 
+	 */
 	public boolean write(boolean isYML, String key, List<String> list) throws NullPointerException, IOException {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.size(); i++) sb.append(list.get(i) + "@%adsw%@");
 		return write(isYML, key, sb.toString().split("@%adsw%@"));
 	}
 	
+	/**
+	 * Recarrega a config.
+	 */
 	public boolean reloadConfig() throws NullPointerException, IOException {
 		if (pl != null && fc != null) saveDefault(true, false);
 		return true;
 	}
 	
+	/**
+	 * Retorna o caminho(diretório) da config.
+	 */
 	public String getPath() {
 		return path;
 	}
 	
+	/**
+	 * Retorna o nome da config, incluindo o seu tipo(.YML, .TXT...).
+	 */
 	public String getFileName() {
 		return fname;
 	}
 	
+	/**
+	 * Retorna o tipo da config, YML, TXT...
+	 */
 	public String getFileType() throws NullPointerException{
 		if (fname.contains(".") && fname.substring(fname.length() - 5).contains(".")) return fname.substring(fname.length() - 4).replace(".", "");
 		return "";
