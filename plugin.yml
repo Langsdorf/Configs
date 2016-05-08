@@ -1,0 +1,4 @@
+name: ConfigTest
+main: com.langsdorf.akl.Main
+version: 1.0
+author: Langsdorf
